@@ -7,7 +7,8 @@ class Iniha extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      investmentAmount: 9700000, // Initial amount: ₹96.85 Lacs
+      investmentAmount: 9700000,
+      activeIndex: null,
     };
   }
 
@@ -18,11 +19,42 @@ class Iniha extends Component {
 
   // Function to calculate the monthly return
   calculateMonthlyReturn = (amount) => {
-    return ((amount / 16500) * 90).toFixed(2); // Formula for monthly return
+    return ((amount / 16500) * 90).toFixed(2);
+  };
+
+  toggleAnswer = (index) => {
+    this.setState({
+      activeIndex: this.state.activeIndex === index ? null : index,
+    });
   };
 
   render() {
     const { investmentAmount } = this.state;
+
+    const percentage = ((investmentAmount - 9700000) / (33600000 - 9700000)) * 100;
+
+    const questions = [
+      {
+        question: 'Where is the project located?',
+        answer:
+          'The project is located in the thriving heart of Mangalore, on Kudroli main road.',
+      },
+      {
+        question: 'What is the minimum investment?',
+        answer:
+          'The minimum investment for a 587 sqft unit is ₹9685500 priced at ₹16,500 per sqft.',
+      },
+      {
+        question: 'What is the rental yield offered?',
+        answer:
+          'The average rental yield in the market is ₹55 per square foot, whereas we are offering an assured yield of ₹90 per square foot.',
+      },
+      {
+        question: 'Is the project RERA approved?',
+        answer:
+          'Yes, this project is RERA approved. The RERA registration number is RERA REG. NO.: PRM/KA/RERA/1257/334/PR/191022/005345',
+      },
+    ];
 
     return (
       <div className="app">
@@ -104,9 +136,9 @@ class Iniha extends Component {
 
         <div className="investment-summary">
           <div className="summary-text">
-            <div style={{ fontSize: "50px", fontWeight: "bold" }}>Summary</div>
+            <div style={{ fontSize: "55px", fontWeight: "bold", fontFamily: "'Montserrat', sans-serif" }}>SUMMARY</div>
             <p>
-              Explore smart investment opportunities with Bhandary Iniha,
+              Explore smart investment opportunities with Iniha Business Center,
               <br /> offering a range of residential and commercial properties
               for growth.
               <br /> Secure your future with us!
@@ -115,16 +147,16 @@ class Iniha extends Component {
           </div>
 
           <div className="investment-details">
-            <h3>Bhandary Iniha, Alake</h3>
-            <p>
+            <h3>Monthly Return Calculator</h3>
+            {/* <p>
               <i
                 style={{ paddingRight: "10px" }}
                 className="fas fa-map-marker-alt"
               ></i>
               Mangalore
-            </p>
+            </p> */}
 
-            <div className="investment-stats">
+            {/* <div className="investment-stats">
               <div className="stat-item">
                 <h4>Min Investment</h4>
                 <p>₹96 Lacs</p>
@@ -141,7 +173,7 @@ class Iniha extends Component {
                 <h4>Capital Appreciation</h4>
                 <p>8.2%</p>
               </div>
-            </div>
+            </div> */}
 
             {/* Investment Amount Scroll */}
             {/* <div className="investment-range">
@@ -158,6 +190,14 @@ class Iniha extends Component {
               <p>₹{investmentAmount.toLocaleString()}</p>
             </div> */}
 
+            {/* Monthly Return Display */}
+            <div className="monthly-heading">
+              Your Returns:
+            </div>
+            <div className="monthly-return-box">
+              <p>₹{this.calculateMonthlyReturn(investmentAmount)}</p>
+            </div>
+
             <div className="investment-range">
               <label htmlFor="investment-range">Select Investment Amount:</label>
               <input
@@ -168,14 +208,11 @@ class Iniha extends Component {
                 step="1"
                 value={investmentAmount}
                 onChange={this.handleScroll}
+                style={{
+                  background: `linear-gradient(to right, #3CA2C8 ${percentage}%,rgb(255, 255, 255) ${percentage}%)`,
+                }}
               />
               <p>₹{investmentAmount.toLocaleString()}</p>
-            </div>
-
-            {/* Monthly Return Display */}
-            <div className="monthly-return-box">
-              <h2>Your Monthly Return:</h2>
-              <p>₹{this.calculateMonthlyReturn(investmentAmount)}</p>
             </div>
 
             {/* <div className="sales-status">
@@ -190,36 +227,42 @@ class Iniha extends Component {
         </div>
 
         <div className="why-iniha-section">
-          <h2>Why Bhandary Iniha?</h2>
+          <div style={{ fontSize: "55px", fontWeight: "bold", fontFamily: "'Montserrat', sans-serif" }}>WHY INIHA BUSINESS CENTER?</div>
           <div className="benefits-container">
             <div className="benefit-item">
-              <i className="fas fa-chart-line"></i>
-              <h3>High Rental Yield</h3>
+              <div style={{ background: "linear-gradient(90deg, #3CA2C8 60%, #6d86ae)" }} className="icon-container">
+                <i className="fas fa-chart-line"></i>
+              </div>
+              <h3>High ROI</h3>
               <p>
-                Attractive yields tailored to maximize your investment returns.
+                Experience exceptional returns with assured rental yields of 6.5% and a conservative capital appreciation of 8% Amounting to a total of 14.5% annually.
               </p>
             </div>
             <div className="benefit-item">
-              <i className="fas fa-credit-card"></i>
-              <h3>Flexible Payment Options</h3>
+              <div style={{ background: "linear-gradient(90deg, #6d86ae 60%, #92729d)" }} className="icon-container">
+                <i className="fas fa-credit-card"></i>
+              </div>
+              <h3>Assured Rentals</h3>
               <p>
-                Convenient payment plans designed for your ease and flexibility.
+                Assured rentals at ₹90 per square foot, significantly higher than the market average of ₹55 per square foot in Mangalore. Our commitment ensures steady and above-market income for property owners.
               </p>
             </div>
             <div className="benefit-item">
-              <i className="fas fa-building"></i>
-              <h3>UDS</h3>
+              <div style={{ background: "linear-gradient(90deg, #92729d 60%, #b2628c)" }} className="icon-container">
+                <i className="fas fa-building"></i>
+              </div>
+              <h3>Prime location</h3>
               <p>
-                Unique provision of undivided shares (UDS) linked to premium
-                properties, setting us apart in the market.
+                Located in Kudroli, Mangalore, our property offers unmatched connectivity and access to the city’s key landmarks. A prime location that guarantees consistent demand and premium rental value.
               </p>
             </div>
             <div className="benefit-item">
-              <i className="fas fa-hand-holding-usd"></i>
-              <h3>Assured Rental</h3>
+              <div style={{ background: "linear-gradient(90deg, #b2628c 60%, #df4977)" }} className="icon-container">
+                <i className="fas fa-hand-holding-usd"></i>
+              </div>
+              <h3>Possession in 5 Months</h3>
               <p>
-                Reliable tenant agreements ensuring consistent and steady
-                income.
+                With the project reaching its final stages of completion, possession is assured within 5 months. A perfectly timed opportunity to own a ready-to-occupy property in record time.
               </p>
             </div>
           </div>
@@ -240,7 +283,7 @@ class Iniha extends Component {
             <div className="master-plan-text">
               <h3>Transformative Living Spaces</h3>
               <p>
-                The Bhandary Iniha master plan integrates modern architecture
+                The Iniha Business Center master plan integrates modern architecture
                 with lush green landscapes to deliver a seamless blend of luxury
                 and nature. It is designed to enhance the living experience
                 while offering the highest standards of comfort and convenience.
@@ -254,7 +297,7 @@ class Iniha extends Component {
           {/* <h2 className="about-builder-title">About the Builder</h2> */}
           <div className="about-builder-container">
             <div className="builder-info">
-              <div style={{ fontSize: "50px", fontWeight: "bold" }}>About Bhandary Builders</div>
+              <div style={{ fontSize: "50px", fontWeight: "bold", fontFamily: "'Volkorn', sans-serif" }}>About Bhandary Builders</div>
               <p>
                 Bhandary Builders have redefined the real estate landscape in
                 Mangalore with their dedication to excellence and innovation.
@@ -273,6 +316,72 @@ class Iniha extends Component {
             <div className="builder-image">
               <img style={{ width: "600px", height: "400px" }} src={iniha2} alt="About the Builder" />
             </div>
+          </div>
+        </div>
+
+        <section class="neighborhood-section">
+          <h2 class="section-title">ABOUT THE NEIGHBORHOOD</h2>
+          <p class="section-description">
+            Located in the thriving heart of Mangalore, this project offers unparalleled access to a vibrant ecosystem of malls, hospitals, tech parks, and more.
+          </p>
+
+          <div class="neighborhood-grid">
+            <div class="category">
+              <h3 class="category-title">Transportation</h3>
+              <ul class="category-list">
+                <li><strong>Mangalore International Airport:</strong> Approx. 12 km</li>
+                <li><strong>Mangalore Central Railway Station:</strong> Approx. 2.5 km</li>
+                <li><strong>Mangalore KSRTC Bus Stand:</strong> Approx. 1.6 km</li>
+              </ul>
+            </div>
+
+            <div class="category">
+              <h3 class="category-title">Landmarks</h3>
+              <ul class="category-list">
+                <li><strong>Kudroli Temple:</strong> Approx. 500 meters</li>
+              </ul>
+            </div>
+
+            <div class="category">
+              <h3 class="category-title">Shopping</h3>
+              <ul class="category-list">
+                <li><strong>City Centre Mall:</strong> Approx. 2 km</li>
+                <li><strong>Forum Fiza Mall:</strong> Approx. 2.8 km</li>
+                <li><strong>Bharat Mall:</strong> Approx. 1.6 km</li>
+              </ul>
+            </div>
+
+            <div class="category">
+              <h3 class="category-title">Healthcare</h3>
+              <ul class="category-list">
+                <li><strong>KMC Hospital:</strong> Approx. 1.8 km</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+
+        <div className="faq-section">
+          <h2 className="faq-heading">Frequently Asked Questions</h2>
+          <div className="faq-container">
+            {questions.map((item, index) => (
+              <div
+                key={index}
+                className="faq-item"
+                onClick={() => this.toggleAnswer(index)}
+              >
+                <div className="faq-question">
+                  <i
+                    className={`fas ${this.state.activeIndex === index ? 'fa-minus' : 'fa-plus'
+                      }`}
+                  />
+                  <span>{item.question}</span>
+                </div>
+                {this.state.activeIndex === index && (
+                  <div className="faq-answer">{item.answer}</div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
