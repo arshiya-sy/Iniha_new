@@ -373,11 +373,11 @@ class Iniha extends Component {
             <i className="fas fa-envelope"></i> 
             <span>Enquire</span>
           </div>
-          <div className="contact-option">
+          <div className="contact-option" onClick={() => window.open("https://wa.me/9740084337", "_blank")}>
             <i className="fab fa-whatsapp"></i> 
             <span>WhatsApp</span>
           </div>
-          <div className="contact-option">
+          <div className="contact-option" onClick={() => window.location.href = "tel:9740084337"}>
             <i className="fas fa-phone-alt"></i>
             <span>Call</span>
           </div>
