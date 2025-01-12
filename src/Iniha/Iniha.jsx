@@ -47,26 +47,6 @@ class Iniha extends Component {
 
     const questions = [
       {
-        question: 'Where is the project located?',
-        answer:
-          'The project is located in the thriving heart of Mangalore, on Kudroli main road.',
-      },
-      {
-        question: 'What is the minimum investment?',
-        answer:
-          'The minimum investment for a 587 sqft unit is ₹9685500 priced at ₹16,500 per sqft.',
-      },
-      {
-        question: 'What is the rental yield offered?',
-        answer:
-          'The average rental yield in the market is ₹55 per square foot, whereas we are offering an assured yield of ₹90 per square foot.',
-      },
-      {
-        question: 'Is the project RERA approved?',
-        answer:
-          'Yes, this project is RERA approved. The RERA registration number is RERA REG. NO.: PRM/KA/RERA/1257/334/PR/191022/005345',
-      },
-      {
         question: 'What is the expected return on investment (ROI) for this project?',
         answer:
           'Iniha Business Centre offers an impressive ROI with minimum assured rental yields of 6.5% and a conservative capital appreciation of 8%, totaling a 14.5% annual return. This robust combination ensures both steady income and substantial growth potential, making Iniha a highly rewarding investment opportunity.'
@@ -97,9 +77,6 @@ class Iniha extends Component {
           'Yes, we have established partnerships with several reputed banks to facilitate home loans, ensuring a smooth and convenient financing process for our customers.'
       }
     ];
-
-    const { showAll } = this.state;
-    const visibleQuestions = showAll ? questions : questions.slice(0, 5);
 
     return (
       <div className="app">
@@ -359,7 +336,7 @@ class Iniha extends Component {
         <div className="faq-section">
           <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }} className="faq-heading">Frequently Asked Questions</div>
           <div className="faq-container">
-            {visibleQuestions.map((item, index) => (
+            {questions.map((item, index) => (
               <div
                 key={index}
                 className="faq-item"
@@ -379,7 +356,7 @@ class Iniha extends Component {
             ))}
           </div>
 
-          {questions.length > 5 && (
+          {/* {questions.length > 5 && (
             <div className="view-more-container">
               <button
                 className="view-more-button"
@@ -388,7 +365,7 @@ class Iniha extends Component {
                 {showAll ? 'View Less' : 'View More'}
               </button>
             </div>
-          )}
+          )} */}
         </div>
 
         <div className="contact-box">
