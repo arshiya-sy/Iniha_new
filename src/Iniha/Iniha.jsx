@@ -9,6 +9,8 @@ class Iniha extends Component {
     this.state = {
       investmentAmount: 9700000,
       activeIndex: null,
+      showPopup: false,
+      showAll: false
     };
   }
 
@@ -27,6 +29,16 @@ class Iniha extends Component {
       activeIndex: this.state.activeIndex === index ? null : index,
     });
   };
+
+  togglePopup = () => {
+    this.setState((prevState) => ({
+      showPopup: !prevState.showPopup,
+    }));
+  };
+
+  toggleViewMore() {
+    this.setState((prevState) => ({ showAll: !prevState.showAll }));
+  }
 
   render() {
     const { investmentAmount } = this.state;
@@ -54,7 +66,40 @@ class Iniha extends Component {
         answer:
           'Yes, this project is RERA approved. The RERA registration number is RERA REG. NO.: PRM/KA/RERA/1257/334/PR/191022/005345',
       },
+      {
+        question: 'What is the expected return on investment (ROI) for this project?',
+        answer:
+          'Iniha Business Centre offers an impressive ROI with minimum assured rental yields of 6.5% and a conservative capital appreciation of 8%, totaling a 14.5% annual return. This robust combination ensures both steady income and substantial growth potential, making Iniha a highly rewarding investment opportunity.'
+      },
+      {
+        question: 'Can I finance my investment through loans or other financial instruments? ',
+        answer:
+          'Yes, of-course ! Iniha Business Centre offers a variety of financing options, including bank loans and other financial instruments, to support your investment. We can assist you in finding the best financing solutions tailored to your needs, ensuring a smooth and seamless investment experience. '
+      },
+      {
+        question: 'Is ample parking available for tenants and visitors? ',
+        answer:
+          'Absolutely! Iniha Business Centre offers spacious and secure parking facilities designed to accommodate both tenants and their guests. With plenty of parking spaces and organized layouts, you and your visitors will always find convenient and hassle-free parking.'
+      },
+      {
+        question: 'How can I schedule a site visit or tour of the project? ',
+        answer:
+          'Simply contact us at +91 91084 77240 or hello@bhandaryiniha.com, and our team will arrange a convenient time for your visit.'
+      },
+      {
+        question: 'Is there a lock-in period? ',
+        answer:
+          'No, Iniha Business Centre does not impose a lock-in period on property owners. We believe in providing our investors with the flexibility and freedom to manage, lease, or sell their properties as they see fit, without any restrictive time frames.'
+      },
+      {
+        question: 'Are loans available for the property?',
+        answer:
+          'Yes, we have established partnerships with several reputed banks to facilitate home loans, ensuring a smooth and convenient financing process for our customers.'
+      }
     ];
+
+    const { showAll } = this.state;
+    const visibleQuestions = showAll ? questions : questions.slice(0, 5);
 
     return (
       <div className="app">
@@ -70,8 +115,8 @@ class Iniha extends Component {
           <div className="investment-container">
             {/* Left Side: Investment Statistics */}
             <div className="investment-info">
-              <div style={{ fontSize: "50px", fontWeight: "bold" }}>
-                Elevating Your <br /> Investments
+              <div style={{ fontSize: "50px", fontWeight: "600", fontFamily: "'Playfair Display', serif" }}>
+                Transforming Investments<br /> into Milestones
               </div>
               <div className="investment-stats">
                 <div className="stat-item">
@@ -93,9 +138,8 @@ class Iniha extends Component {
               </div>
             </div>
 
-            {/* Right Side: Learn More Form */}
             <div className="investment-form">
-              <div style={{ textAlign: "left" }}>
+              <div style={{ textAlign: "left" }} onClick={this.togglePopup}>
                 <h2>Learn More</h2>
               </div>
               <form>
@@ -136,61 +180,20 @@ class Iniha extends Component {
 
         <div className="investment-summary">
           <div className="summary-text">
-            <div style={{ fontSize: "55px", fontWeight: "bold", fontFamily: "'Montserrat', sans-serif" }}>SUMMARY</div>
+            <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }}>Summary</div>
             <p>
               Explore smart investment opportunities with Iniha Business Center,
-              <br /> offering a range of residential and commercial properties
+              offering a range of residential and commercial properties
               for growth.
-              <br /> Secure your future with us!
+              <br /> <br/>
+              With assured rental yields and modern designs, Iniha is your trusted partner for smart investments and a prosperous future.
             </p>
             <button className="download-brochure">Download Brochure</button>
           </div>
 
           <div className="investment-details">
-            <h3>Monthly Return Calculator</h3>
-            {/* <p>
-              <i
-                style={{ paddingRight: "10px" }}
-                className="fas fa-map-marker-alt"
-              ></i>
-              Mangalore
-            </p> */}
-
-            {/* <div className="investment-stats">
-              <div className="stat-item">
-                <h4>Min Investment</h4>
-                <p>₹96 Lacs</p>
-              </div>
-              <div style={{ marginLeft: "-90px" }} className="stat-item">
-                <h4>Rental Yield</h4>
-                <p>5.8%</p>
-              </div>
-              <div className="stat-item">
-                <h4>Target IRR</h4>
-                <p>14%</p>
-              </div>
-              <div style={{ marginLeft: "-90px" }} className="stat-item">
-                <h4>Capital Appreciation</h4>
-                <p>8.2%</p>
-              </div>
-            </div> */}
-
-            {/* Investment Amount Scroll */}
-            {/* <div className="investment-range">
-              <label htmlFor="investment-range">Select Investment Amount:</label>
-              <input
-                id="investment-range"
-                type="range"
-                min="9700000"
-                max="33600000"
-                step="1"
-                value={investmentAmount}
-                onChange={this.handleScroll}
-              />
-              <p>₹{investmentAmount.toLocaleString()}</p>
-            </div> */}
-
-            {/* Monthly Return Display */}
+            <div style={{ fontSize: "30px", fontWeight: "500", fontFamily: "'Coco Gothic', sans-serif" }}>Monthly Return Calculator</div>
+           
             <div className="monthly-heading">
               Your Returns:
             </div>
@@ -227,7 +230,7 @@ class Iniha extends Component {
         </div>
 
         <div className="why-iniha-section">
-          <div style={{ fontSize: "55px", fontWeight: "bold", fontFamily: "'Montserrat', sans-serif" }}>WHY INIHA BUSINESS CENTER?</div>
+          <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }}>Why Iniha Business Center?</div>
           <div className="benefits-container">
             <div className="benefit-item">
               <div style={{ background: "linear-gradient(90deg, #3CA2C8 60%, #6d86ae)" }} className="icon-container">
@@ -274,11 +277,11 @@ class Iniha extends Component {
           <div>plan img</div>
         </div> */}
 
-        <div className="master-plan-section">
+        {/* <div className="master-plan-section">
           <h2 className="master-plan-title">Master Plan</h2>
           <div className="master-plan-container">
             <div className="master-plan-image">
-              {/* <img src="" alt="Master Plan" /> */}
+              <img src="" alt="Master Plan" />
             </div>
             <div className="master-plan-text">
               <h3>Transformative Living Spaces</h3>
@@ -291,26 +294,19 @@ class Iniha extends Component {
               <button className="master-plan-btn">Explore More</button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="about-builder-section">
-          {/* <h2 className="about-builder-title">About the Builder</h2> */}
           <div className="about-builder-container">
             <div className="builder-info">
-              <div style={{ fontSize: "50px", fontWeight: "bold", fontFamily: "'Volkorn', sans-serif" }}>About Bhandary Builders</div>
+              <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }}>About Bhandary Builders</div>
               <p>
-                Bhandary Builders have redefined the real estate landscape in
-                Mangalore with their dedication to excellence and innovation.
-                Known for delivering high-quality projects, they combine modern
-                architectural designs with functionality to create spaces that
-                resonate with their customers' aspirations.
+                With a proud legacy of over 20 years in the real estate industry, Bhandary Builders have been pivotal in shaping Mangalore’s dynamic skyline. Successfully completing 14+ projects and currently advancing 4 exciting ventures, we blend decades of expertise with a relentless passion for excellence and innovation. Our hallmark lies in delivering high-quality developments that harmoniously integrate modern architectural designs.
               </p>
               <p>
-                With a reputation for transparency and trust, Bhandary Builders
-                ensure every project is a masterpiece, offering unmatched value
-                and satisfaction to investors and residents alike.
+                At Bhandary Builders, transparency and trust are more than just values—they are the foundation of every project we undertake. Whether you’re looking to invest or find your perfect home, Bhandary Builders stand ready to turn your vision into reality, contributing to the vibrant growth and enduring legacy of our beloved city.
               </p>
-              <button className="builder-btn">Learn More</button>
+              <button className="builder-btn" onClick={this.togglePopup}>Learn More</button>
             </div>
 
             <div className="builder-image">
@@ -320,7 +316,7 @@ class Iniha extends Component {
         </div>
 
         <section class="neighborhood-section">
-          <h2 class="section-title">ABOUT THE NEIGHBORHOOD</h2>
+          <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }} class="section-title">About The Neighborhood</div>
           <p class="section-description">
             Located in the thriving heart of Mangalore, this project offers unparalleled access to a vibrant ecosystem of malls, hospitals, tech parks, and more.
           </p>
@@ -360,11 +356,10 @@ class Iniha extends Component {
           </div>
         </section>
 
-
         <div className="faq-section">
-          <h2 className="faq-heading">Frequently Asked Questions</h2>
+          <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }} className="faq-heading">Frequently Asked Questions</div>
           <div className="faq-container">
-            {questions.map((item, index) => (
+            {visibleQuestions.map((item, index) => (
               <div
                 key={index}
                 className="faq-item"
@@ -383,23 +378,63 @@ class Iniha extends Component {
               </div>
             ))}
           </div>
+
+          {questions.length > 5 && (
+            <div className="view-more-container">
+              <button
+                className="view-more-button"
+                onClick={() => this.toggleViewMore()}
+              >
+                {showAll ? 'View Less' : 'View More'}
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="contact-box">
-          <div className="contact-option">
-            <i className="fas fa-envelope"></i> {/* Enquire Icon */}
+          <div className="contact-option" onClick={this.togglePopup}>
+            <i className="fas fa-envelope"></i> 
             <span>Enquire</span>
           </div>
           <div className="contact-option">
-            <i className="fab fa-whatsapp"></i> {/* WhatsApp Icon */}
+            <i className="fab fa-whatsapp"></i> 
             <span>WhatsApp</span>
           </div>
           <div className="contact-option">
-            <i className="fas fa-phone-alt"></i> {/* Call Icon */}
+            <i className="fas fa-phone-alt"></i>
             <span>Call</span>
           </div>
         </div>
 
+        {this.state.showPopup && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              <span className="close-btn" onClick={this.togglePopup}>
+                &times;
+              </span>
+              <div className="enquire-header">Enquire Now</div>
+              <form className="enquiry-form">
+                <label>
+                  Name:
+                  <input type="text" placeholder="Enter your name" required />
+                </label>
+                <label>
+                  Email:
+                  <input type="email" placeholder="Enter your email" required />
+                </label>
+                <label>
+                  Contact:
+                  <input
+                    type="tel"
+                    placeholder="Enter your contact number"
+                    required
+                  />
+                </label>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* Footer Sectionn */}
         <footer className="footer">
