@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Iniha_new/static/css/main.4f5d747a.css",
-    "main.js": "/Iniha_new/static/js/main.92247cc1.js",
+    "main.js": "/Iniha_new/static/js/main.7692f5ac.js",
     "static/js/156.6a35e1a0.chunk.js": "/Iniha_new/static/js/156.6a35e1a0.chunk.js",
     "static/media/iniha2.jpg": "/Iniha_new/static/media/iniha2.b6e1123e57d0b13b8590.jpg",
     "static/media/fa-solid-900.ttf": "/Iniha_new/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
@@ -16,11 +16,11 @@
     "static/media/fa-v4compatibility.woff2": "/Iniha_new/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
     "index.html": "/Iniha_new/index.html",
     "main.4f5d747a.css.map": "/Iniha_new/static/css/main.4f5d747a.css.map",
-    "main.92247cc1.js.map": "/Iniha_new/static/js/main.92247cc1.js.map",
+    "main.7692f5ac.js.map": "/Iniha_new/static/js/main.7692f5ac.js.map",
     "156.6a35e1a0.chunk.js.map": "/Iniha_new/static/js/156.6a35e1a0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4f5d747a.css",
-    "static/js/main.92247cc1.js"
+    "static/js/main.7692f5ac.js"
   ]
 }
