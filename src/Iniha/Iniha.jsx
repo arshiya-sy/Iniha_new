@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./Iniha.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import iniha2 from '../Iniha/iniha2.jpg'
+import iniha2 from '../Iniha/iniha2.jpg';
+import emailjs from 'emailjs-com';
+
 
 class Iniha extends Component {
   constructor(props) {
@@ -10,16 +12,19 @@ class Iniha extends Component {
       investmentAmount: 9700000,
       activeIndex: null,
       showPopup: false,
-      showAll: false
+      showAll: false,
+      isFormSubmitted: false,
+      showModal: false,
+      name: '',
+      email: '',
+      contact: '',
     };
   }
 
-  // Function to handle the scroll input
   handleScroll = (event) => {
     this.setState({ investmentAmount: parseInt(event.target.value) });
   };
 
-  // Function to calculate the monthly return
   calculateMonthlyReturn = (amount) => {
     return ((amount / 16500) * 90).toFixed(2);
   };
@@ -39,6 +44,32 @@ class Iniha extends Component {
   toggleViewMore() {
     this.setState((prevState) => ({ showAll: !prevState.showAll }));
   }
+
+  handleEnquireClick = () => {
+    this.setState({ showModal: true });
+  };
+
+  handleFormSubmit = (event) => {
+    event.preventDefault();
+  
+    emailjs
+      .sendForm(
+        'service_thnjlix', 
+        'template_1no6s7w', 
+        event.target,
+        'nGnPLpooQeFE6IcsU' 
+      )
+      .then(
+        (result) => {
+          alert('Form submitted and email sent successfully!');
+          this.setState({ isFormSubmitted: true, showPopup: false });
+        },
+        (error) => {
+          alert('Error sending email. Please try again.');
+          console.error(error.text);
+        }
+      );
+  };
 
   render() {
     const { investmentAmount } = this.state;
@@ -119,7 +150,7 @@ class Iniha extends Component {
               <div style={{ textAlign: "left" }} onClick={this.togglePopup}>
                 <h2>Learn More</h2>
               </div>
-              <form>
+              <form onSubmit={this.handleFormSubmit}>
                 <div className="form-group">
                   <label htmlFor="name">Name *</label>
                   <input
@@ -390,21 +421,23 @@ class Iniha extends Component {
                 &times;
               </span>
               <div className="enquire-header">Enquire Now</div>
-              <form className="enquiry-form">
+              <form className="enquiry-form" onSubmit={this.handleFormSubmit}>
                 <label>
                   Name:
-                  <input type="text" placeholder="Enter your name" required />
+                  <input type="text" name="name" placeholder="Enter your name" required 
+                  onChange={(e) => this.setState({ name: e.target.value })} />
                 </label>
                 <label>
                   Email:
-                  <input type="email" placeholder="Enter your email" required />
+                  <input type="email" name="email" placeholder="Enter your email" required 
+                  onChange={(e) => this.setState({ email: e.target.value })}/>
                 </label>
                 <label>
                   Contact:
                   <input
-                    type="tel"
+                    type="tel" name="contact"
                     placeholder="Enter your contact number"
-                    required
+                    required onChange={(e) => this.setState({ contact: e.target.value })}
                   />
                 </label>
                 <button type="submit">Submit</button>
