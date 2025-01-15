@@ -3,7 +3,10 @@ import "./Iniha.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import iniha2 from '../Iniha/iniha2.jpg';
 import emailjs from 'emailjs-com';
-
+import floor1 from '../Iniha/floor1.jpeg';
+import floor2 from '../Iniha/floor2.jpg';
+import floor3 from '../Iniha/floor3.jpg';
+import floor4 from '../Iniha/floor4.jpeg';
 
 class Iniha extends Component {
   constructor(props) {
@@ -18,6 +21,7 @@ class Iniha extends Component {
       name: '',
       email: '',
       contact: '',
+      isBlurred: true,
     };
   }
 
@@ -51,13 +55,13 @@ class Iniha extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault();
-  
+
     emailjs
       .sendForm(
-        'service_thnjlix', 
-        'template_1no6s7w', 
+        'service_thnjlix',
+        'template_1no6s7w',
         event.target,
-        'nGnPLpooQeFE6IcsU' 
+        'nGnPLpooQeFE6IcsU'
       )
       .then(
         (result) => {
@@ -69,6 +73,8 @@ class Iniha extends Component {
           console.error(error.text);
         }
       );
+
+    this.setState({ isBlurred: false });
   };
 
   render() {
@@ -111,7 +117,6 @@ class Iniha extends Component {
 
     return (
       <div className="app">
-        {/* Header Section */}
         <header className="header">
           <div className="logo"></div>
           <nav className="nav">
@@ -121,7 +126,6 @@ class Iniha extends Component {
 
         <section className="investment-section">
           <div className="investment-container">
-            {/* Left Side: Investment Statistics */}
             <div className="investment-info">
               <div style={{ fontSize: "50px", fontWeight: "600", fontFamily: "'Playfair Display', serif" }}>
                 Transforming Investments<br /> into Milestones
@@ -193,7 +197,7 @@ class Iniha extends Component {
               Explore smart investment opportunities with Iniha Business Center,
               offering a range of residential and commercial properties
               for growth.
-              <br /> <br/>
+              <br /> <br />
               With assured rental yields and modern designs, Iniha is your trusted partner for smart investments and a prosperous future.
             </p>
             <button className="download-brochure">Download Brochure</button>
@@ -201,7 +205,7 @@ class Iniha extends Component {
 
           <div className="investment-details">
             <div style={{ fontSize: "30px", fontWeight: "500", fontFamily: "'Coco Gothic', sans-serif" }}>Monthly Return Calculator</div>
-           
+
             <div className="monthly-heading">
               Your Returns:
             </div>
@@ -225,15 +229,6 @@ class Iniha extends Component {
               />
               <p>₹{investmentAmount.toLocaleString()}</p>
             </div>
-
-            {/* <div className="sales-status">
-              <p>
-                <strong>₹1,117,800,000</strong> of ₹1,242,000,000
-              </p>
-              <p>
-                <strong>90% Sold Out</strong>
-              </p>
-            </div> */}
           </div>
         </div>
 
@@ -323,6 +318,25 @@ class Iniha extends Component {
           </div>
         </div>
 
+        <div className="floor-plan-section">
+          <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }}>Floor Plans</div>
+          {/* Floor Plan Images */}
+          <div
+            className={`floor-plan-images ${this.state.isBlurred ? 'blurred' : 'unblurred'
+              }`}
+          >
+            <img src={floor1} alt="Floor Plan 1" />
+            <img src={floor2} alt="Floor Plan 1" />
+            <img src={floor3} alt="Floor Plan 1" />
+            <img src={floor4} alt="Floor Plan 1" />
+            {this.state.isBlurred && (
+              <button className="explore-button" onClick={this.togglePopup}>
+                Explore Now
+              </button>
+            )}
+          </div>
+        </div>
+
         <section class="neighborhood-section">
           <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }} class="section-title">About The Neighborhood</div>
           <p class="section-description">
@@ -401,11 +415,11 @@ class Iniha extends Component {
 
         <div className="contact-box">
           <div className="contact-option" onClick={this.togglePopup}>
-            <i className="fas fa-envelope"></i> 
+            <i className="fas fa-envelope"></i>
             <span>Enquire</span>
           </div>
           <div className="contact-option" onClick={() => window.open("https://wa.me/9740084337", "_blank")}>
-            <i className="fab fa-whatsapp"></i> 
+            <i className="fab fa-whatsapp"></i>
             <span>WhatsApp</span>
           </div>
           <div className="contact-option" onClick={() => window.location.href = "tel:9740084337"}>
@@ -424,13 +438,13 @@ class Iniha extends Component {
               <form className="enquiry-form" onSubmit={this.handleFormSubmit}>
                 <label>
                   Name:
-                  <input type="text" name="name" placeholder="Enter your name" required 
-                  onChange={(e) => this.setState({ name: e.target.value })} />
+                  <input type="text" name="name" placeholder="Enter your name" required
+                    onChange={(e) => this.setState({ name: e.target.value })} />
                 </label>
                 <label>
                   Email:
-                  <input type="email" name="email" placeholder="Enter your email" required 
-                  onChange={(e) => this.setState({ email: e.target.value })}/>
+                  <input type="email" name="email" placeholder="Enter your email" required
+                    onChange={(e) => this.setState({ email: e.target.value })} />
                 </label>
                 <label>
                   Contact:
@@ -446,7 +460,6 @@ class Iniha extends Component {
           </div>
         )}
 
-        {/* Footer Sectionn */}
         <footer className="footer">
           <p>© 2024 Bhandary Iniha Business Centre. All Rights Reserved.</p>
         </footer>
