@@ -18,11 +18,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-<<<<<<< HEAD
-  "homepage": "https://bhandaryiniha.com",
-=======
   "homepage": "https://arshiya-sy.github.io/Iniha_new",
->>>>>>> e4ca7b0 (Saved changes for future use)
   "eslintConfig": {
     "extends": [
       "react-app",
