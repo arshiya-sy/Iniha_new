@@ -127,23 +127,23 @@ class Iniha extends Component {
         <section className="investment-section">
           <div className="investment-container">
             <div className="investment-info">
-              <div style={{ fontSize: "50px", fontWeight: "600", fontFamily: "'Playfair Display', serif" }}>
-                Transforming Investments<br /> into Milestones
+              <div className="text-header">
+                Transforming Investments into Milestones
               </div>
               <div className="investment-stats">
                 <div className="stat-item">
-                  <h3>14%</h3>
+                  <h3>14.5%</h3>
                   <p>Target IRR</p>
                 </div>
-                <div style={{ marginLeft: "-90px" }} className="stat-item">
-                  <h3>5.8%</h3>
-                  <p>Rental Yield</p>
+                <div style={{marginLeft: "-90px"}} className="stat-item">
+                  <h3>6.5%</h3>
+                  <p>Minimum Rental Yield</p>
                 </div>
                 <div className="stat-item">
-                  <h3>₹96 Lacs</h3>
+                  <h3>₹97 Lacs</h3>
                   <p>Minimum Investment</p>
                 </div>
-                <div style={{ marginLeft: "-90px" }} className="stat-item">
+                <div style={{marginLeft: "-90px"}} className="stat-item">
                   <h3>April 2025</h3>
                   <p>Handover</p>
                 </div>
@@ -274,31 +274,6 @@ class Iniha extends Component {
           </div>
         </div>
 
-        {/* <div>
-          <div>Master Plan</div>
-          <div>Embrace smart investment in commercial real estate, tailored to suit your needs. From small square footage to grand opportunities, Y-Living caters to every aspiration. Indulge in a rewarding investment experience with us!</div>
-          <div>plan img</div>
-        </div> */}
-
-        {/* <div className="master-plan-section">
-          <h2 className="master-plan-title">Master Plan</h2>
-          <div className="master-plan-container">
-            <div className="master-plan-image">
-              <img src="" alt="Master Plan" />
-            </div>
-            <div className="master-plan-text">
-              <h3>Transformative Living Spaces</h3>
-              <p>
-                The Iniha Business Center master plan integrates modern architecture
-                with lush green landscapes to deliver a seamless blend of luxury
-                and nature. It is designed to enhance the living experience
-                while offering the highest standards of comfort and convenience.
-              </p>
-              <button className="master-plan-btn">Explore More</button>
-            </div>
-          </div>
-        </div> */}
-
         <div className="about-builder-section">
           <div className="about-builder-container">
             <div className="builder-info">
@@ -320,7 +295,6 @@ class Iniha extends Component {
 
         <div className="floor-plan-section">
           <div style={{ fontSize: "50px", fontWeight: "500", fontFamily: "'Playfair Display', serif" }}>Floor Plans</div>
-          {/* Floor Plan Images */}
           <div
             className={`floor-plan-images ${this.state.isBlurred ? 'blurred' : 'unblurred'
               }`}
@@ -400,17 +374,6 @@ class Iniha extends Component {
               </div>
             ))}
           </div>
-
-          {/* {questions.length > 5 && (
-            <div className="view-more-container">
-              <button
-                className="view-more-button"
-                onClick={() => this.toggleViewMore()}
-              >
-                {showAll ? 'View Less' : 'View More'}
-              </button>
-            </div>
-          )} */}
         </div>
 
         <div className="contact-box">
